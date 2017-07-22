@@ -35,8 +35,6 @@ func main() {
         fmt.Println(input)
         os.Exit(1)
     }
-
-    fmt.Println(input)
 }
 
 func init() {
