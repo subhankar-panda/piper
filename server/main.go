@@ -11,7 +11,7 @@ func main() {
 
     PORT := os.Getenv("PORT")
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        fmt.Println(w, "Hello World")
+        fmt.Fprintf(w, "Hello World")
     })
 
     http.HandleFunc("/hi", func(w http.ResponseWriter, r *http.Request) {
