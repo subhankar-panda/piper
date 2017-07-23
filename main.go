@@ -12,6 +12,10 @@ import (
     flag "github.com/ogier/pflag"
 )
 
+const (
+    API_URI = "https://agile-escarpment-29641.herokuapp.com/"
+)
+
 var (
     input string
     filepath string
