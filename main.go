@@ -4,7 +4,10 @@ import (
     "fmt"
     "os"
     "bufio"
-    "net/http"
+    "strings"
+    "io/ioutil"
+    "math/rand"
+    "time"
 
     flag "github.com/ogier/pflag"
 )
@@ -33,9 +36,30 @@ func main() {
             input += scanner.Text() + "\n"
         }
 
-        fmt.Println(input)
         os.Exit(1)
     }
+}
+
+func createURL() (words string) {
+
+    rand.Seed(time.Now().Unix())
+
+    adjectives, _ := os.Open("./words/adjectives.txt")
+    nouns, _ := os.Open("./words/nouns.txt")
+
+    bytesAdj, _ := ioutil.ReadAll(adjectives)
+    bytesNoun, _  := ioutil.ReadAll(nouns)
+
+    adjectiveArr := strings.Split(string(bytesAdj), "\n")
+    nounArr := strings.Split(string(bytesNoun), "\n")
+
+    n := rand.Int() % len(adjectiveArr)
+    url := adjectiveArr[n]
+
+    n = rand.Int() % len(nounArr)
+    url += nounArr[n]
+
+    return url
 }
 
 func init() {
