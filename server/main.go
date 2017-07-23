@@ -7,6 +7,7 @@ import (
     "fmt"
     "strings"
     "io/ioutil"
+    "encoding/json"
 
     "github.com/gorilla/mux"
 )
@@ -25,12 +26,17 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 func inputHandler(w http.ResponseWriter, r *http.Request) {
     body, err := ioutil.ReadAll(r.Body)
 
+    var pipe Pipe
+
     if err != nil {
         panic(err)
         print(body)
     }
 
-    fmt.Fprintln(w, "wooooooot");
+    jsonString := string(body)
+
+    json.Unmarshal([]byte(jsonString), &pipe)
+    fmt.Fprintf(w, pipe.input)
 }
 
 
