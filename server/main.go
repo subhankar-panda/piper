@@ -9,7 +9,7 @@ import (
 
 func main() {
 
-    PORT := os.GetEnv("PORT")
+    PORT := os.Getenv("PORT")
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
         http.ServeFile(w, r, r.URL.Path[1:])
     })
