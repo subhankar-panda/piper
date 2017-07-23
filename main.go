@@ -47,7 +47,6 @@ func main() {
         JSON, _ := json.Marshal(sending)
         resp, _ := http.NewRequest("POST", API_URI + "service/" + ext , bytes.NewBuffer(JSON))
         fmt.Println(resp)
-
     }
 }
 
