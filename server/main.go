@@ -22,7 +22,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func inputHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintln(w, "wow!")
+    fmt.Fprintln(w, formatRequest(r))
 }
 
 
