@@ -6,6 +6,8 @@ import (
     "os"
     "fmt"
     "strings"
+    "io/ioutil"
+    "io"
 
     "github.com/gorilla/mux"
 )
@@ -22,7 +24,14 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func inputHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintln(w, formatRequest(r))
+    body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
+
+    if err != nil {
+        panic(err)
+    }
+
+    fmt.Fprintln(w, body)
+
 }
 
 
