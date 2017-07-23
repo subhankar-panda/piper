@@ -29,7 +29,7 @@ func inputHandler(w http.ResponseWriter, r *http.Request) {
         panic(err)
     }
 
-    fmt.Fprintln(w, string(body))
+    fmt.Fprintln(w, "wooooooot");
 }
 
 
