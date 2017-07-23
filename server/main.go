@@ -23,14 +23,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func inputHandler(w http.ResponseWriter, r *http.Request) {
-    body, err := ioutil.ReadAll(r.Body)
+    body, err := ioutil.ReadAll(w.Body)
 
     if err != nil {
         panic(err)
     }
 
-    fmt.Fprintln(w, len(body))
-
+    fmt.Fprintln(w, string(body))
 }
 
 

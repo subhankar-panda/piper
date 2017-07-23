@@ -45,8 +45,19 @@ func main() {
         ext := createURL()
         sending := map[string]string{"id" : ext, "input" : input}
         JSON, _ := json.Marshal(sending)
-        resp, _ := http.NewRequest("POST", API_URI + "service/" + ext , bytes.NewBuffer(JSON))
-        fmt.Println(resp)
+        req, _ := http.NewRequest("POST", API_URI + "service/" + ext , bytes.NewBuffer(JSON))
+
+        client := &http.Client{}
+        resp, err := client.Do(req)
+
+        if err != nil {
+            panic(err)
+        }
+
+        defer resp.Body.Close()
+
+        body, _ := ioutil.ReadAll(resp.Body)
+        fmt.Println(string(body))
     }
 }
 
