@@ -36,7 +36,9 @@ func main() {
             input += scanner.Text() + "\n"
         }
 
-        os.Exit(1)
+        ext := createURL()
+
+        fmt.Println(ext)
     }
 }
 
@@ -54,10 +56,10 @@ func createURL() (words string) {
     nounArr := strings.Split(string(bytesNoun), "\n")
 
     n := rand.Int() % len(adjectiveArr)
-    url := adjectiveArr[n]
+    url := strings.Title(adjectiveArr[n])
 
     n = rand.Int() % len(nounArr)
-    url += nounArr[n]
+    url += strings.Title(nounArr[n])
 
     return url
 }
