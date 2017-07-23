@@ -8,6 +8,7 @@ import (
     "io/ioutil"
     "math/rand"
     "time"
+    "encoding/json"
 
     flag "github.com/ogier/pflag"
 )
@@ -42,7 +43,9 @@ func main() {
 
         ext := createURL()
 
-        fmt.Println(ext)
+        sending := map[string]string{"id" : ext, "input" : input}
+        JSON, _ := json.Marshal(sending)
+        req, _ := http.NewRequest("POST", API_URI + "/service/" + ext ,JSON)
     }
 }
 

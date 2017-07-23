@@ -5,7 +5,24 @@ import (
     "net/http"
     "os"
     "fmt"
+
+    "github.com/gorilla/mux"
 )
+
+type Pipe struct {
+    ID    string `json:"id"`
+    input string `json:"input"`
+}
+
+var pipes []Pipe
+
+func indexHandler(w http.ResponseWriter, r *http.Request) {
+        fmt.Fprintf(w, "Hello, World!")
+}
+
+func inputHandler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf (w, "broooooooo")
+}
 
 func main() {
 
@@ -15,10 +32,10 @@ func main() {
         PORT = "3000"
     }
 
-    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprintf(w, "Hello, World!")
-    })
+    router := mux.NewRouter()
 
-    log.Fatal(http.ListenAndServe(":" + PORT, nil))
+    router.HandleFunc("/", indexHandler).Methods("GET")
+    router.HandleFunc("/service/{id}", inputHandler).Methods("POST")
+    log.Fatal(http.ListenAndServe(":" + PORT, router))
 
 }
