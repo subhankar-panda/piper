@@ -9,6 +9,8 @@ import (
     "math/rand"
     "time"
     "encoding/json"
+    "net/http"
+    "bytes"
 
     flag "github.com/ogier/pflag"
 )
@@ -36,16 +38,16 @@ func main() {
 
     } else if info.Size() > 0 {
         scanner := bufio.NewScanner(os.Stdin)
-
         for scanner.Scan() {
             input += scanner.Text() + "\n"
         }
 
         ext := createURL()
-
         sending := map[string]string{"id" : ext, "input" : input}
         JSON, _ := json.Marshal(sending)
-        req, _ := http.NewRequest("POST", API_URI + "/service/" + ext ,JSON)
+        resp, _ := http.NewRequest("POST", API_URI + "service/" + ext , bytes.NewBuffer(JSON))
+        fmt.Println(resp)
+
     }
 }
 
