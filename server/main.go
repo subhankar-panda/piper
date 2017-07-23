@@ -4,22 +4,20 @@ import (
     "log"
     "net/http"
     "os"
-
-    "github.com/gorilla/mux"
+    "fmt"
 )
-
-type Pipe struct {
-    Input string  `json:"input"`
-    URL   string  `json:"url"`
-}
 
 func main() {
 
     PORT := os.Getenv("PORT")
 
-    router := mux.NewRouter().StrictSlash(true)
+    if PORT == "" {
+        PORT = "3000"
+    }
 
-    router.HandleFunc("/", indexHandler)
+    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        fmt.Fprintf(w, "Hello, World!")
+    })
 
     log.Fatal(http.ListenAndServe(":" + PORT, nil))
 
