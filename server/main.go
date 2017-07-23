@@ -36,7 +36,7 @@ func inputHandler(w http.ResponseWriter, r *http.Request) {
     jsonString := string(body)
 
     json.Unmarshal([]byte(jsonString), &pipe)
-    fmt.Fprintf (w, "qweqeqweqwe")
+    fmt.Fprintf(w, jsonString)
     fmt.Fprintf(w, pipe.input)
 }
 
