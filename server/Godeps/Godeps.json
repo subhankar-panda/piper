@@ -1,0 +1,6 @@
+{
+	"ImportPath": "github.com/subhankar-panda/piper/server",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v79",
+	"Deps": []
+}
