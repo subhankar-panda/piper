@@ -23,7 +23,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func inputHandler(w http.ResponseWriter, r *http.Request) {
-    body, err := ioutil.ReadAll(w.Body)
+    body, err := ioutil.ReadAll(r.Body)
 
     if err != nil {
         panic(err)
