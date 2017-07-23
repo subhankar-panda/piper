@@ -27,6 +27,7 @@ func inputHandler(w http.ResponseWriter, r *http.Request) {
 
     if err != nil {
         panic(err)
+        print(body)
     }
 
     fmt.Fprintln(w, "wooooooot");
