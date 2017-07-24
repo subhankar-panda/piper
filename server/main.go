@@ -1,20 +1,19 @@
 package main
 
 import (
-    "log"
-    "net/http"
-    "os"
-    "fmt"
     "strings"
     "io/ioutil"
     "encoding/json"
-
+    "net/http"
+    "fmt"
+    "os"
+    "log"
     "github.com/gorilla/mux"
 )
 
 type Pipe struct {
     ID    string `json:"id"`
-    input string `json:"input"`
+    Input string `json:"input"`
 }
 
 var pipes []Pipe
@@ -42,7 +41,7 @@ func inputHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     fmt.Fprintf(w, jsonString)
-    fmt.Fprintf(w, pipe.input)
+    fmt.Fprintf(w, pipe.Input)
 }
 
 
