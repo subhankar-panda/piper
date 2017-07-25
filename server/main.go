@@ -45,8 +45,6 @@ func inputHandler(w http.ResponseWriter, req *http.Request) {
         panic(err)
     }
 
-    fmt.Fprintln(w, "Input123 ", pipe.Input)
-
     creds, _ := ioutil.ReadFile("creds.txt")
 
     credsString := strings.TrimSpace(string(creds))
@@ -85,7 +83,7 @@ func inputHandler(w http.ResponseWriter, req *http.Request) {
         panic(err)
     }
 
-    fmt.Fprintln(w, "uggggggg")
+    fmt.Fprintln(w, pipe.ID)
 }
 
 
