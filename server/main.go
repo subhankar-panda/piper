@@ -75,7 +75,13 @@ func inputHandler(w http.ResponseWriter, req *http.Request) {
 
     c := sess.DB("piper").C("pipes")
 
-    fmt.Fprintln(w, "databases")
+    err = c.Insert(&Pipe{ID: pipe.ID, Input: pipe.Input})
+
+    if err != nil {
+        panic(err)
+    }
+
+    fmt.Fprintln(w, "uggggggg")
 }
 
 
