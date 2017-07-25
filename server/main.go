@@ -66,7 +66,7 @@ func inputHandler(w http.ResponseWriter, req *http.Request) {
 
     sess.SetSafe(&mgo.Safe{})
 
-    c := sess.DB("piper").C("pipes")
+//    c := sess.DB("piper").C("pipes")
 
     fmt.Fprintln(w, "databases")
 }
