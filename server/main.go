@@ -48,7 +48,14 @@ func inputHandler(w http.ResponseWriter, req *http.Request) {
     fmt.Fprintln(w, "Input123 ", pipe.Input)
 
     creds, _ := ioutil.ReadFile("creds.txt")
-    uri := "mongodb://subhankarpanda:" + string(creds) + "@ds047592.mlab.com:47592/piper"
+
+    credsString := strings.TrimSpace(string(creds))
+
+    if err != nil {
+        panic(err)
+    }
+
+    uri := "mongodb://subhankarpanda:" + credsString + "@ds047592.mlab.com:47592/piper"
 
     if uri == "" {
         fmt.Println("no connection string provided")
@@ -66,7 +73,7 @@ func inputHandler(w http.ResponseWriter, req *http.Request) {
 
     sess.SetSafe(&mgo.Safe{})
 
-//    c := sess.DB("piper").C("pipes")
+    c := sess.DB("piper").C("pipes")
 
     fmt.Fprintln(w, "databases")
 }
