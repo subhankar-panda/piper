@@ -152,7 +152,7 @@ func getValueFunc(w http.ResponseWriter, r *http.Request) {
     err  = c.Find(bson.M{"id" : id}).One(&result)
 
     if err != nil {
-        panic(err)
+        fmt.Fprintln(w, "That doesn't exist!")
     }
 
     fmt.Fprintln(w, result.Input)
