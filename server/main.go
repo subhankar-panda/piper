@@ -46,6 +46,29 @@ func inputHandler(w http.ResponseWriter, req *http.Request) {
     }
 
     fmt.Fprintln(w, "Input123 ", pipe.Input)
+
+    creds, _ := ioutil.ReadFile("creds.txt")
+    uri := "mongodb://subhankarpanda:" + string(creds) + "@ds047592.mlab.com:47592/piper"
+
+    if uri == "" {
+        fmt.Println("no connection string provided")
+        os.Exit(1)
+    }
+
+    sess, err := mgo.Dial(uri)
+
+    if err != nil {
+        fmt.Printf("Can't connect to mongo, go error %v\n", err)
+        os.Exit(1)
+    }
+
+    defer sess.Close()
+
+    sess.SetSafe(&mgo.Safe{})
+
+//    c := sess.DB("piper").C("pipes")
+
+
 }
 
 
@@ -83,18 +106,10 @@ func main() {
         PORT = "3000"
     }
 
-    creds := os.Open("creds.txt")
-
     router := mux.NewRouter()
 
     router.HandleFunc("/", indexHandler).Methods("GET")
     router.HandleFunc("/service/{id}", inputHandler).Methods("POST")
     log.Fatal(http.ListenAndServe(":" + PORT, router))
-
-    db, err := mgo.Dial("mongodb://subhankarpanda:" + creds+ "@ds047592.mlab.com:47592/piper")
-    if err != nil {
-        log.Fatal("cannot dial mongo", err)
-    }
-    defer db.Close() // clean up when we’re done 
 
 }
