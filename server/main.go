@@ -3,7 +3,7 @@ package main
 import (
     "strings"
     "io/ioutil"
-//    "encoding/json"
+    "encoding/json"
     "net/http"
     "fmt"
     "os"
@@ -25,11 +25,26 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 func inputHandler(w http.ResponseWriter, req *http.Request) {
     body, err := ioutil.ReadAll(req.Body)
 
+    var pipe Pipe
+
     if err != nil {
         panic(err)
     }
+
+    err = req.Body.Close()
+
+    if err != nil {
+        panic(err)
+    }
+
+    err = json.Unmarshal (body, &pipe)
+
+    if err != nil {
+        panic(err)
+    }
+
     fmt.Fprintln(w, "body ", body)
-    fmt.Println(body)
+    fmt.Fprintln(w, "ID123 ", pipe.ID)
 }
 
 

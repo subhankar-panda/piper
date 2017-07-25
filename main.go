@@ -72,7 +72,6 @@ func main() {
         }
 
         fmt.Println(string(body))
-        fmt.Println(sending)
     }
 }
 
