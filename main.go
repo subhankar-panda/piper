@@ -16,8 +16,8 @@ import (
 )
 
 const (
-//   API_URI = "https://agile-escarpment-29641.herokuapp.com/"
-   API_URI = "http://localhost:3000/"
+   API_URI = "https://agile-escarpment-29641.herokuapp.com/"
+//   API_URI = "http://localhost:3000/"
 )
 
 var (
