@@ -22,22 +22,14 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(w, "Hello, World!")
 }
 
-func inputHandler(w http.ResponseWriter, r *http.Request) {
-    body, err := ioutil.ReadAll(r.Body)
+func inputHandler(w http.ResponseWriter, req *http.Request) {
+    body, err := ioutil.ReadAll(req.Body)
 
     if err != nil {
         panic(err)
     }
-
+    fmt.Fprintln(w, "body ", body)
     fmt.Println(body)
-
-    /*err = json.Unmarshal([]byte(jsonString), &pipe)
-
-    if err != nil {
-        panic(err)
-    }
-
-    fmt.Fprintf(w, pipe.Input) */
 }
 
 
