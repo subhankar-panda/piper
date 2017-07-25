@@ -113,6 +113,11 @@ func formatRequest(r *http.Request) string {
   return strings.Join(request, "\n")
 }
 
+func getValueFunc(w http.ResponseWriter, r *http.Request) {
+    params := mux.Vars(r)
+    fmt.Fprintln(w, params)
+}
+
 func main() {
 
     PORT := os.Getenv("PORT")
@@ -125,6 +130,7 @@ func main() {
 
     router.HandleFunc("/", indexHandler).Methods("GET")
     router.HandleFunc("/service/{id}", inputHandler).Methods("POST")
+    router.HandleFunc("/{id}", getValueFunc).Methods("GET")
     log.Fatal(http.ListenAndServe(":" + PORT, router))
 
 }
