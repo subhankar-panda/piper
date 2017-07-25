@@ -8,6 +8,7 @@ import (
     "fmt"
     "os"
     "log"
+    "gopkg.in/mgo.v2"
 
     "github.com/gorilla/mux"
 )
@@ -82,10 +83,18 @@ func main() {
         PORT = "3000"
     }
 
+    creds := os.Open("creds.txt")
+
     router := mux.NewRouter()
 
     router.HandleFunc("/", indexHandler).Methods("GET")
     router.HandleFunc("/service/{id}", inputHandler).Methods("POST")
     log.Fatal(http.ListenAndServe(":" + PORT, router))
+
+    db, err := mgo.Dial("mongodb://subhankarpanda:" + creds+ "@ds047592.mlab.com:47592/piper")
+    if err != nil {
+        log.Fatal("cannot dial mongo", err)
+    }
+    defer db.Close() // clean up when we’re done 
 
 }

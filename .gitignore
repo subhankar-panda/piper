@@ -1,1 +1,2 @@
-db/
+server/db
+server/creds.txt
