@@ -3,7 +3,7 @@ package main
 import (
     "strings"
     "io/ioutil"
-    "encoding/json"
+//    "encoding/json"
     "net/http"
     "fmt"
     "os"
@@ -25,23 +25,19 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 func inputHandler(w http.ResponseWriter, r *http.Request) {
     body, err := ioutil.ReadAll(r.Body)
 
-    var pipe Pipe
-
     if err != nil {
         panic(err)
-        print(body)
     }
 
-    jsonString := string(body)
+    fmt.Println(body)
 
-    err = json.Unmarshal([]byte(jsonString), &pipe)
+    /*err = json.Unmarshal([]byte(jsonString), &pipe)
 
     if err != nil {
         panic(err)
     }
 
-    fmt.Fprintf(w, jsonString)
-    fmt.Fprintf(w, pipe.Input)
+    fmt.Fprintf(w, pipe.Input) */
 }
 
 

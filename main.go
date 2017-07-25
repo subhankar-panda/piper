@@ -44,8 +44,17 @@ func main() {
 
         ext := createURL()
         sending := map[string]string{"id" : ext, "input" : input}
-        JSON, _ := json.Marshal(sending)
-        req, _ := http.NewRequest("POST", API_URI + "service/" + ext , bytes.NewBuffer(JSON))
+        JSON, err := json.Marshal(sending)
+
+        if err != nil {
+            panic(err)
+        }
+
+        req, err := http.NewRequest("POST", API_URI + "service/" + ext , bytes.NewBuffer(JSON))
+
+        if err != nil {
+            panic(err)
+        }
 
         client := &http.Client{}
         resp, err := client.Do(req)
@@ -56,8 +65,14 @@ func main() {
 
         defer resp.Body.Close()
 
-        body, _ := ioutil.ReadAll(resp.Body)
+        body, err := ioutil.ReadAll(resp.Body)
+
+        if err != nil {
+            panic(err)
+        }
+
         fmt.Println(string(body))
+        fmt.Println(sending)
     }
 }
 
