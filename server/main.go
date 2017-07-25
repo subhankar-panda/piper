@@ -8,7 +8,9 @@ import (
     "fmt"
     "os"
     "log"
+
     "gopkg.in/mgo.v2"
+    "gopkg.in/mgo.v2/bson"
 
     "github.com/gorilla/mux"
 )
@@ -115,7 +117,45 @@ func formatRequest(r *http.Request) string {
 
 func getValueFunc(w http.ResponseWriter, r *http.Request) {
     params := mux.Vars(r)
-    fmt.Fprintln(w, params)
+    id := params["id"]
+
+    creds, _ := ioutil.ReadFile("creds.txt")
+
+    credsString := strings.TrimSpace(string(creds))
+
+    if credsString == "" {
+        credsString = os.Getenv("PASS")
+    }
+
+    uri := "mongodb://subhankarpanda:" + credsString + "@ds047592.mlab.com:47592/piper"
+
+    if uri == "" {
+        fmt.Println("no connection string provided")
+        os.Exit(1)
+    }
+
+    sess, err := mgo.Dial(uri)
+
+    if err != nil {
+        fmt.Printf("Can't connect to mongo, go error %v\n", err)
+        os.Exit(1)
+    }
+
+    defer sess.Close()
+
+    sess.SetSafe(&mgo.Safe{})
+
+    c := sess.DB("piper").C("pipes")
+
+    var result Pipe
+
+    err  = c.Find(bson.M{"id" : id}).One(&result)
+
+    if err != nil {
+        panic(err)
+    }
+
+    fmt.Fprintln(w, result.Input)
 }
 
 func main() {
