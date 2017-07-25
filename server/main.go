@@ -52,7 +52,7 @@ func inputHandler(w http.ResponseWriter, req *http.Request) {
     credsString := strings.TrimSpace(string(creds))
 
     if credsString == "" {
-        credsString = os.Genenv("PASS")
+        credsString = os.Getenv("PASS")
     }
 
     if err != nil {
