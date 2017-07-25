@@ -43,8 +43,7 @@ func inputHandler(w http.ResponseWriter, req *http.Request) {
         panic(err)
     }
 
-    fmt.Fprintln(w, "body ", body)
-    fmt.Fprintln(w, "ID123 ", pipe.ID)
+    fmt.Fprintln(w, "Input123 ", pipe.Input)
 }
 
 
