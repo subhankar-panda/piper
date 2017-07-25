@@ -68,7 +68,7 @@ func inputHandler(w http.ResponseWriter, req *http.Request) {
 
     c := sess.DB("piper").C("pipes")
 
-    fmt.Fprintln("databases")
+    fmt.Fprintln(w, "databases")
 }
 
 
