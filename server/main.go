@@ -8,6 +8,7 @@ import (
     "fmt"
     "os"
     "log"
+    "html/template"
 
     "gopkg.in/mgo.v2"
     "gopkg.in/mgo.v2/bson"
@@ -155,7 +156,15 @@ func getValueFunc(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintln(w, "That doesn't exist!")
     }
 
-    fmt.Fprintln(w, result.Input)
+    tmpl := template.New("output page")
+    tmpl, err =  tmpl.ParseFiles("./templates/output.html")
+
+    if err != nil {
+        fmt.Fprintln(w, "whoops, template didnt load")
+        return;
+    }
+
+    tmpl.Execute(w, result.Input)
 }
 
 func main() {
