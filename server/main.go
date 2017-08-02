@@ -163,7 +163,7 @@ func getValueFunc(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintln(w, "whoops, template didnt load")
         return;
     }
-    tmpl.ExecuteTemplate(w, "output",result.Input)
+    fmt.Fprintln(w, result.Input)
 }
 
 func main() {
