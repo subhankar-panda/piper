@@ -163,12 +163,7 @@ func getValueFunc(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintln(w, "That doesn't exist!")
     }
 
-    if err != nil {
-        fmt.Fprintln(w, "whoops, template didnt load")
-        return;
-    }
-
-    renderTemplate (w, "templates/hello.html", &result)
+    renderTemplate (w, "./templates/hello.html", &result)
 }
 
 func main() {
