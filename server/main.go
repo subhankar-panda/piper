@@ -172,6 +172,9 @@ func main() {
         PORT = "3000"
     }
 
+    fs := http.FileServer(http.Dir("public"))
+    http.Handle("/public/", http.StripPrefix("/public/", fs))
+
     router := mux.NewRouter()
 
     router.HandleFunc("/", indexHandler).Methods("GET")
