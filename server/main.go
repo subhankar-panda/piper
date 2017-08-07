@@ -172,8 +172,8 @@ func main() {
         PORT = "3000"
     }
 
-    fs := http.FileServer(http.Dir("public"))
-    http.Handle("/public/", http.StripPrefix("/public/", fs))
+    fs_css := http.FileServer(http.Dir("public/css"))
+    http.Handle("/public/css", http.StripPrefix("/public/", fs_css))
 
     router := mux.NewRouter()
 
