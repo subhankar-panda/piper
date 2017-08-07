@@ -154,7 +154,12 @@ func getValueFunc(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintln(w, "That doesn't exist!")
     }
 
-    t, _ := template.ParseFiles("./templates/hello.html")
+    t, err := template.ParseFiles("./templates/hello.html")
+
+    if err != nil {
+        fmt.Fprintln(w, err)
+    }
+
     t.Execute(w, "Hello World!")
 
 }

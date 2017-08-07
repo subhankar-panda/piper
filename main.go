@@ -19,7 +19,7 @@ import (
 const (
    API_URI = "https://agile-escarpment-29641.herokuapp.com/"
 //   API_URI = "http://localhost:3000/"
-    OUTPUT_STR = "Yay! Your output is now live at \n \t %s%s !"
+    OUTPUT_STR = "Yay! Your output is now live at \n \t %s%s"
 )
 
 var (
@@ -68,7 +68,7 @@ func main() {
 
         defer resp.Body.Close()
 
-        body, err := ioutil.ReadAll(resp.Body)
+        _, err = ioutil.ReadAll(resp.Body)
 
         if err != nil {
             panic(err)
@@ -76,7 +76,8 @@ func main() {
 
         red := color.New(color.FgRed).SprintFunc()
 
-        fmt.Printf(OUTPUT_STR, API_URI ,red(string(body)))
+        fmt.Printf(OUTPUT_STR, API_URI ,red(ext))
+        fmt.Println("")
     }
 }
 
