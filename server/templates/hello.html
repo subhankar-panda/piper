@@ -1,5 +1,13 @@
 {{ template "header" . }}
 
-    {{ . }}
+ <div class="container-fluid">  
+  	<div class="col-md-8 col-md-offset-2">
+  			<pre>
+  				<code>
+{{ .Input }}
+  				</code>
+  			</pre>
+  	</div>
+  	</div>
 
 {{ template "footer" . }}

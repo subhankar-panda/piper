@@ -1,0 +1,23 @@
+body {
+	background-color: #fffffe;
+}
+
+#center {
+	font-size: 4.2em;
+}
+
+header {
+	padding-top: 20px;
+	padding-bottom: 15px;
+	font-family: monospace; !important;
+	border-bottom: solid;
+	border-bottom-color: #000;
+	border-bottom-width: 1px;
+	margin-bottom: 50px;
+}
+
+.tagline {
+	padding-top: 10px;
+	font-size: 1.5em;
+}
+

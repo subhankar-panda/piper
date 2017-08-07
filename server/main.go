@@ -160,7 +160,7 @@ func getValueFunc(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintln(w, err)
     }
 
-    t.Execute(w, result.Input)
+    t.Execute(w, result)
 
 }
 
