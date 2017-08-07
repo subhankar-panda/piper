@@ -173,7 +173,7 @@ func main() {
     }
 
     fs_css := http.FileServer(http.Dir("public/css"))
-    http.Handle("/public/css", http.StripPrefix("/public/", fs_css))
+    http.Handle("/public/css", http.StripPrefix("/public/css", fs_css))
 
     router := mux.NewRouter()
 
