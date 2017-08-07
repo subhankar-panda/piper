@@ -23,17 +23,8 @@ type Pipe struct {
 
 var pipes []Pipe
 
-var templates = template.New("").Funcs(templateMap)
-
 func indexHandler(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(w, "Hello, World!")
-}
-
-func renderTemplate(w http.ResponseWriter, tmpl string, p interface{}) {
-    err := templates.ExecuteTemplate(w, tmpl, p)
-    if err != nil {
-        http.Error(w, err.Error(), http.StatusInternalServerError)
-    }
 }
 
 func inputHandler(w http.ResponseWriter, req *http.Request) {
@@ -163,7 +154,9 @@ func getValueFunc(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintln(w, "That doesn't exist!")
     }
 
-    renderTemplate (w, "./templates/hello.html", &result)
+    t, _ := template.ParseFiles("./templates/hello.html")
+    t.Execute(w, "Hello World!")
+
 }
 
 func main() {
