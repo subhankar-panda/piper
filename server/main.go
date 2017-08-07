@@ -164,18 +164,6 @@ func getValueFunc(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func ServeStatic(router *mux.Router, staticDirectory string) {
-    staticPaths := map[string]string{
-        "css":           staticDirectory + "/css/",
-        "javascripts":          staticDirectory + "/javascripts/",
-    }
-    for pathName, pathValue := range staticPaths {
-        pathPrefix := "/" + pathName + "/"
-        router.PathPrefix(pathPrefix).Handler(http.StripPrefix(pathPrefix,
-            http.FileServer(http.Dir(pathValue))))
-    }
-}
-
 func main() {
 
     PORT := os.Getenv("PORT")
@@ -185,7 +173,10 @@ func main() {
     }
 
     router := mux.NewRouter()
-    ServeStatic(router, "/public/")
+
+    cssHandler := http.FileServer(http.Dir("./public/css"))
+
+    http.Handle("/public/css", http.StripPrefix("/public/css", cssHandler))
 
     router.HandleFunc("/", indexHandler).Methods("GET")
     router.HandleFunc("/service/{id}", inputHandler).Methods("POST")
