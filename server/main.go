@@ -24,7 +24,13 @@ type Pipe struct {
 var pipes []Pipe
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-        fmt.Fprintf(w, "Hello, World!")
+    t, err := template.ParseFiles("./templates/header.html")
+
+    if err != nil {
+        panic(err)
+    }
+
+    t.Execute(w, err)
 }
 
 func inputHandler(w http.ResponseWriter, req *http.Request) {
