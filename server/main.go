@@ -176,7 +176,7 @@ func main() {
 
     cssHandler := http.FileServer(http.Dir("./public/css"))
 
-    http.Handle("/public/css", http.StripPrefix("/public/css", cssHandler))
+    router.PathPrefix("/public/css/").Handler(http.StripPrefix("/public/css", cssHandler))
 
     router.HandleFunc("/", indexHandler).Methods("GET")
     router.HandleFunc("/service/{id}", inputHandler).Methods("POST")
