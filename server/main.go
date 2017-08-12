@@ -24,7 +24,7 @@ type Pipe struct {
 var pipes []Pipe
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
-    t, err := template.ParseFiles("./templates/header.html")
+    t, err := template.ParseFiles("./templates/landing.html",  "./templates/header.html", "./templates/footer.html")
 
     if err != nil {
         panic(err)
@@ -187,6 +187,7 @@ func main() {
     router.HandleFunc("/", indexHandler).Methods("GET")
     router.HandleFunc("/service/{id}", inputHandler).Methods("POST")
     router.HandleFunc("/{id}", getValueFunc).Methods("GET")
+    fmt.Println("running on : " + PORT)
     log.Fatal(http.ListenAndServe(":" + PORT, router))
 
 }

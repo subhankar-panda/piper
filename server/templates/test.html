@@ -27,17 +27,41 @@
   	<div class="col-md-8 col-md-offset-2">
 
      <div class="text-center" id="name"> 
-        hah
      </div>
+     <p>
+     Piper is a command line tool to easily and seamlessly share command line outputs to the web, by using a unix pipe to the <code>piper</code> command.
+  	 </p>
 
-  			<pre>
-  				<code>
-Lorem ipsum dolor sit amet, ad nec cibo argumentum. Nam et volumus moderatius appellantur, no nam tamquam integre persequeris. Laudem facilisis definiebas ne est. Nonumy copiosae inimicus sea at, veri animal eos id, conceptam vituperata vel ad. Et mei oblique numquam contentiones. Nec te homero placerat ullamcorper, usu consulatu maiestatis democritum ut.
+     <p>
+       You can get <code>piper</code> by running the following commands in a unix shell :
+     </p>
 
-Te deleniti comprehensam est, pri te dicat vulputate. Ferri fuisset intellegam ea per. Vis cibo ornatus denique eu. Eu ullum iracundia eos, alii facilisis te usu. Ne meliore fuisset mei. Usu ea ponderum similique dissentiet, ex quem quis sit.
-  				</code>
-  			</pre>
-  	</div>
+     <pre> <code>
+$ git clone https://github.com/subhankar-panda/piper.git piper
+$ cd piper
+$ go install -v </code>
+     </pre>
+
+     <p>
+       I'm working on getting it up on npm/brew <\shrug>
+     </p>
+
+     <p>
+       Once you have piper installed, you can get to using it like this :
+     </p>
+
+     <pre><code>
+$ python frustating_err_code.py > err_python
+$ cat err_python | piper</code>
+     </pre>
+
+     <p>
+       Piper will generate a ~sick~ URL for you and host your file on the web for you to share your findings/errs, straight from your shell!
+     </p>
+
+
+
+    </div>
   	</div>
 
 <!-- HERE -->
