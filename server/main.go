@@ -19,6 +19,7 @@ import (
 type Pipe struct {
     ID    string `json:"id"`
     Input string `json:"input"`
+    Time  string `json:"time"`
 }
 
 var pipes []Pipe
@@ -86,7 +87,7 @@ func inputHandler(w http.ResponseWriter, req *http.Request) {
 
     c := sess.DB("piper").C("pipes")
 
-    err = c.Insert(&Pipe{ID: pipe.ID, Input: pipe.Input})
+    err = c.Insert(&Pipe{ID: pipe.ID, Input: pipe.Input, Time : pipe.Time})
 
     if err != nil {
         panic(err)

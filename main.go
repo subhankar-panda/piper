@@ -46,7 +46,8 @@ func main() {
         }
 
         ext := createURL()
-        sending := map[string]string{"id" : ext, "input" : input}
+        currtime := time.Now() //TODO convert to string, the type in the struct is string
+        sending := map[string]string{"id" : ext, "input" : input, "time" : currtime}
         JSON, err := json.Marshal(sending)
 
         if err != nil {
